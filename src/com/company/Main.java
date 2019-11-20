@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         //ex1();
-        ex12();
+        extra();
     }
 
     private static void ex1() {
@@ -34,7 +34,7 @@ public class Main {
         if (age >= 18 && age < 35) System.out.println("You can vote, but you can\'t be elected president.");
         if (age >= 35) System.out.println("You can be elected president");
     }
-//Poprawic na ladniejszy jak starczy czasu, to da sie zrobic lepiej
+
     private static void ex4() {
         Scanner read = new Scanner(System.in);
         System.out.print("Enter 3 numbers separated by enter");
@@ -131,7 +131,7 @@ public class Main {
         }
 
     }
-    //Wrzucic do tablicy pozniej
+
     private static void ex10() {
         for (int i = 1; i <= 10; i++){
             for (int j = 1; j <= 10; j++){
@@ -141,7 +141,7 @@ public class Main {
             System.out.println("");
         }
     }
-//Wyświetl kolejne elementy ciągu Fibonacciego.
+
     private static void ex11(int n){
         long a = 1;
         long b = 1;
@@ -162,7 +162,7 @@ public class Main {
                 if (divtwo) {
                     System.out.print("podzielne przez 2");
                     while (divthree) {
-                        System.out.print(" podzielne przez 3");
+                        System.out.print(" i podzielne przez 3");
                         break;
                     }
                 }
@@ -192,9 +192,7 @@ public class Main {
             end = a;
         }
         int range = end - beggining + 1;
-        for(int i = beggining; i <= range; i++) {
-            int rand = (int)(Math.random() * range) + beggining;
-        }
+        int rand = (int)(Math.random() * range) + beggining;
         System.out.print(rand);
     }
 }
