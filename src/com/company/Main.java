@@ -1,24 +1,14 @@
-// warunkowe, petle mozna od 4 zaczac, do losowanie, ostatnia z losowania wymaga wiecej czasu
 package com.company;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Scanner;
-
-import java.util.Set;
-import java.util.HashSet;
-
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
-import java.io.*;
-import java.net.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-       ex14();
-        //unique_2();
-        //extra();
+
     }
 
     private static void ex1() {
@@ -83,7 +73,7 @@ public class Main {
 
     private static void ex7() {
         Scanner read = new Scanner(System.in);
-        System.out.print("Enter a, b and c of exuasion: ax^2 + bx + c");
+        System.out.print("Enter a, b and c of equation: ax^2 + bx + c");
         double a = read.nextInt();
         double b = read.nextInt();
         double c = read.nextInt();
@@ -124,22 +114,23 @@ public class Main {
     }
 
     //Wyświetl liczby w pętli z przedziału podanego przez użytkownika (operujemy na liczbach całkowitych)
+
     private static void ex9() {
         Scanner read = new Scanner(System.in);
-        System.out.print("Enter the beggining and the end of the range separated by enter");
+        System.out.print("Enter the beginning and the end of the range separated by enter");
         int a = read.nextInt();
         int b = read.nextInt();
-        int beggining = 0;
+        int beginning = 0;
         int end = 0;
         if (a < b) {
-            beggining = a;
+            beginning = a;
             end = b;
         } else {
-            beggining = b;
+            beginning = b;
             end = a;
         }
 
-        for (int i = beggining; i <= end; i++) {
+        for (int i = beginning; i <= end; i++) {
             System.out.println(i);
         }
 
@@ -211,14 +202,14 @@ public class Main {
     }
 
 
-    //Napisz program,  który losuje liczbę. Użytkownik ma za zadanie odgadnąć liczbę wylosowaną przez komputer
+    // Napisz program,  który losuje liczbę. Użytkownik ma za zadanie odgadnąć liczbę wylosowaną przez komputer
     // z określonego zakresu.  Program ma podpowiadać “za dużo”, “za mało” lub “odgadłeś za “+liczba_prób+”razem”.
 
     public static void ex13(){
         int rand = (int) ((Math.random() * 9) + 1);
         int tries = 0;
         while(true){
-            System.out.print("Guess a number:   ");
+            System.out.print("Guess a number between 1 and 10:   ");
             Scanner read = new Scanner(System.in);
             int guess = read.nextInt();
             tries += 1;
@@ -267,47 +258,60 @@ public class Main {
     //Napisz program, który losuje 6 różnych z 49 liczb (używając kolekcji) *.
 
     public static void ex16(){
-        Set<String> rand_numbers = new HashSet<>();
-
-    }
-
-    // NOWE ZAJECIA
-
-    public static void silnia() {
-        Scanner read = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        long siln = 1;
-        int num = read.nextInt();
-        for (int i = num; i > 1; i--){
-            siln = siln * i;
+        Set<Integer> rand_numbers = new HashSet<Integer>();
+        while (true){
+            if (rand_numbers.size() < 6) {
+                int rand = (int) (Math.random() * 50);
+                rand_numbers.add(rand);
+                }
+            else {
+                    break;
+                }
         }
-        System.out.print(siln);
+        System.out.println(rand_numbers);
     }
+    //Napisz program, który pobiera od użytkownika 6 liczb z puli 49. Program ma wziąć pod  uwagę zestaw unikalnych
+    //sześciu liczb.  Następnie program dokonuje losowań do czasu gdy wylosuje wybrane przez użytkownika zestawienie
+    // liczb. Program podaje po ilu latach i ilu dniach użytkownik wylosowałby liczby (np. potrzeba x lat i x dni).
+    // Zakładamy że losowania odbywają się codziennie (jedno losowanie na jeden dzień). *
 
-    public static void silnia_big() {
+    public static void ex17(){
         Scanner read = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        BigInteger silnia = new BigInteger("1");
-        BigInteger num = new BigInteger("1");
-        num = read.nextBigInteger();
-        BigInteger i = new BigInteger("0");
-        BigInteger base = new BigInteger("1");
-//        for (i = num; i > base; i--){
-//            silnia = silnia.multiply(i);
-//        }
-        System.out.print(silnia);
+        int [] user_numbers = new int [6];
+        System.out.println("Enter 6 unique numbers separated by enter between 1 and 49 included.");
+        for(int i = 0; i < 6; i++){
+            user_numbers[i] = read.nextInt();
+        }
+
+
+        int rand = 0;
+        int days = 0;
+        int years = 0;
+
+        for (int i = 0; i < 6; i++){
+            while (true){
+                if (days < 365) {
+                    days += 1;
+                }
+                else {
+                    years += 1;
+                    days = 0;
+                }
+                rand = (int)(Math.random() * 49) + 1;
+                if (user_numbers[i] == rand){
+                    System.out.println("I\'ve guessed " + rand);
+                    break;
+                }
+            }
+        }
+        System.out.println("You would\'ve guessed it in " + years + " years and " + days + " days.");
     }
 
-    public static void pi_number() {
-        BigDecimal pi = new BigDecimal("3.1415926535897933333");
-        double pi_1 = Math.PI;
-        System.out.println(pi_1);
-        System.out.println(pi);
-    }
+    /**
+    ZAJECIA ZADANIA 2 - KOLEKCJE I BIG INTEGER
+    **/
 
-    //ZAJECIA ZADANIA 2 - KOLEKCJE I BIG INTEGER
-
-    //Napisz program, który wczyta od użytkownika dane z klawiatury do momentu wpisania słowa “koniec”,
+    // Napisz program, który wczyta od użytkownika dane z klawiatury do momentu wpisania słowa “koniec”,
     // które nie jest elementem zbioru/listy/tablicy czy innej struktury. Program na końcu ma wyświetlić liczbę
     // wprowadzonych elementów jak i liczbę elementów unikalnych (występujących w strukturze przechowującej
     // elementy tylko jeden raz).
