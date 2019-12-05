@@ -323,7 +323,7 @@ public class Main {
         Set<String> text = new HashSet<>();
         while (true){
             Scanner read = new Scanner(System.in);
-            String words = new String();
+            String words;
             words = read.nextLine();
             if (words.equals(end)){
                 break;
@@ -367,7 +367,7 @@ public class Main {
         Set<String> text = new HashSet<>();
         while (true){
             Scanner read = new Scanner(System.in);
-            String words = new String();
+            String words;
             words = read.nextLine();
             if (words.equals(end)){
                 break;
@@ -375,7 +375,7 @@ public class Main {
             else{
                 if (text.contains(words)){
                     System.out.print("Already typed. Do you want to add it? [Y/N]  ");
-                    String yn = new String();
+                    String yn;
                     yn = read.nextLine();
                     if (yn.equals("y")){
                         text.add(words);
